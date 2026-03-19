@@ -1,0 +1,15 @@
+services:
+  php85:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dcm-php:8.5
+    restart: unless-stopped
+    volumes:
+      - ${DCM_VOLUMES_DIR}/DcmPhp/apps:/var/www/html:z
+    networks:
+      - web
+      - db
+    depends_on:
+      caddy:
+        condition: service_started
