@@ -1,8 +1,15 @@
+include:
+  - ${DCM_CONFIG_DIR}/DcmPhp/Php83/volumes.yml
+
 services:
   php83:
     build:
-      context: .
+      context: ../../lib
       dockerfile: Dockerfile
+      args:
+        PHP_VERSION: "8.3"
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     image: dcm-php:8.3
     restart: unless-stopped
     volumes:

@@ -1,8 +1,15 @@
+include:
+  - ${DCM_CONFIG_DIR}/DcmPhp/Php74/volumes.yml
+
 services:
   php74:
     build:
-      context: .
+      context: ../../lib
       dockerfile: Dockerfile
+      args:
+        PHP_VERSION: "7.4"
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     image: dcm-php:7.4
     restart: unless-stopped
     volumes:
