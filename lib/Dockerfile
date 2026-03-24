@@ -7,20 +7,21 @@ FROM php:${PHP_VERSION}-fpm-alpine
 # Recreate www-data with host UID/GID to avoid volume permission issues
 ARG UID
 ARG GID
-RUN deluser www-data 2>/dev/null; \
-  delgroup www-data 2>/dev/null; \
-  addgroup -g ${GID} www-data && \
-  adduser -u ${UID} -G www-data -H -s /bin/sh -D www-data
-
 # Install GIT
 RUN apk update && \
-  apk add \ 
+  apk add --no-cache \ 
+  shadow \
   git \
   openssh \
   jq \
   curl \
   openssl \
   ca-certificates
+
+RUN userdel www-data 2>/dev/null || true; \
+  groupdel www-data 2>/dev/null || true; \
+  groupadd -g ${GID} www-data && \
+  useradd -u ${UID} -g www-data -M -s /bin/sh www-data
 
 # Installer for PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/

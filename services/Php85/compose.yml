@@ -8,8 +8,8 @@ services:
       dockerfile: Dockerfile
       args:
         PHP_VERSION: "8.5"
-        UID: ${UID:-1000}
-        GID: ${GID:-1000}
+        UID: ${DCM_UID:-1000}
+        GID: ${DCM_GID:-1000}
     image: dcm-php:8.5
     restart: unless-stopped
     volumes:
