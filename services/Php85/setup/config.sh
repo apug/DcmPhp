@@ -4,6 +4,28 @@ printf '%b\n' "--- PHP 8.5 Configuration ---" >&2
 apps_dir="${DCM_VOLUMES_DIR}/DcmPhp/apps"
 mkdir -p "$apps_dir"
 printf '%b\n' "✓ Apps directory: $apps_dir" >&2
+
+composer_dir="${DCM_VOLUMES_DIR}/DcmPhp/composer"
+mkdir -p "$composer_dir"
+
+if [ ! -f "$composer_dir/auth.json" ]; then
+  cat > "$composer_dir/auth.json" <<'EOF'
+{
+    "gitlab-token": {
+        "gitlab.com": "TOKEN"
+    },
+    "http-basic": {
+        "satis.example.com": {
+            "username": "user",
+            "password": "password"
+        }
+    },
+    "bearer": {}
+}
+EOF
+  printf '%b\n' "✓ auth.json creato in $composer_dir" >&2
+  printf '%b\n' "  Modifica $composer_dir/auth.json con le tue credenziali" >&2
+fi
 printf '%b\n' "" >&2
 printf '%b\n' "Caddy usage example:" >&2
 printf '%b\n' "  myapp.{\$CADDY_MAIN_DOMAIN} {" >&2
