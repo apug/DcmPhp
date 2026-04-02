@@ -1,0 +1,14 @@
+name: DcmPhp
+summary: PHP runtime services (7.4, 8.3, 8.4, 8.5)
+description: |
+  DcmPhp provides PHP-FPM runtime services in multiple versions
+  for running PHP applications behind the Caddy reverse proxy.
+services:
+  - name: Php74
+    summary: PHP 7.4 FPM runtime
+  - name: Php83
+    summary: PHP 8.3 FPM runtime
+  - name: Php84
+    summary: PHP 8.4 FPM runtime
+  - name: Php85
+    summary: PHP 8.5 FPM runtime
