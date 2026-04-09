@@ -62,7 +62,7 @@ services:
       - /home/user/otherapp:/var/www/html/otherapp:z
 ```
 
-After any change: `docker compose up -d --force-recreate php83`
+After any change: `dcm service restart --recreate DcmPhp/Php83`
 
 ## Caddy integration
 
@@ -132,10 +132,10 @@ dcm service enable DcmPhp/Php83
 docker compose up -d --build php83
 
 # Enter the container (drops in as your host user)
-docker exec -it php83 sh
+dcm service shell DcmPhp/Php83
 
 # Run Composer inside the container
-docker exec php83 composer install -d /var/www/html/myapp
+docker compose exec php83 composer install -d /var/www/html/myapp
 ```
 
 ## Networks
