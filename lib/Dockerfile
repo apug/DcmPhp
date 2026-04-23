@@ -51,6 +51,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
   yaml \
   zip
 
+COPY php-ini-overrides.ini /usr/local/etc/php/conf.d/overrides.ini
+
 # Trust mounted volumes regardless of host ownership
 RUN git config --system --add safe.directory '*'
 
