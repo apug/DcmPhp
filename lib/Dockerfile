@@ -61,5 +61,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN mkdir -p /composer
 ENV COMPOSER_HOME=/composer
 
+ENV HOME=/home/www-data
+
 USER www-data
 

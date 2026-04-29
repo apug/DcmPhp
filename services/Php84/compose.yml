@@ -15,6 +15,7 @@ services:
     volumes:
       - ${DCM_VOLUMES_DIR}/DcmPhp/apps:/var/www/html:z
       - ${DCM_VOLUMES_DIR}/DcmPhp/composer:/composer:z
+      - ${HOME}/.ssh:/home/www-data/.ssh:ro
     networks:
       - web
       - db
